@@ -25,11 +25,11 @@ io.on('connection', function(socket){
 
         io.emit('chat message', msgs);
     });
-/*
+
     socket.on('disconnect', function(){
-        console.log('user disconnected');
+        console.log('user disconnected - ' + socket.name);
     });
-*/
+
 
 });
 
