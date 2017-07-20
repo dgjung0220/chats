@@ -1,15 +1,21 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
+
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+
+var route = require('./route.js');
+
 var List = require('collections/list');
+app.use(express.static('static'));
+app.use(express.static('semantic'));
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.use('/', route);
 
 var port = process.env.PORT || 3000;
-
 var userlist = new List();
-
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
-});
 
 io.on('connection', function(socket){
     socket.on('login', function(user) {

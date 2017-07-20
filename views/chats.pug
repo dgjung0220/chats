@@ -1,0 +1,15 @@
+extends ./template.pug
+
+block chats
+  link(rel='stylesheet' type='text/css' href='css/chats.css')    
+  script(src='/socket.io/socket.io.js')
+  script(src='js/chats.js')
+
+  #messageWindow
+    ul#messages
+  #userlistWindow
+    ul#userlist
+  
+  form(action='')
+    input#m(autocomplete='off')
+    button Send
