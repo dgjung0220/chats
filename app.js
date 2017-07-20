@@ -1,8 +1,11 @@
 var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var List = require('collections/list');
 
 var port = process.env.PORT || 3000;
+
+var userlist = new List();
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -13,7 +16,11 @@ io.on('connection', function(socket){
         console.log('Client logged-in:\n name:' + user.name);
 
         socket.name = user.name;
+        userlist.add(user.name);
         io.emit('login', user.name);
+        
+        console.log(userlist.toJSON());
+        io.emit('currentUser', userlist.toJSON());
     });
     
     socket.on('chat message', function(data){
@@ -27,10 +34,14 @@ io.on('connection', function(socket){
     });
 
     socket.on('disconnect', function(){
-        console.log('user disconnected - ' + socket.name);
+        console.log(socket.name + ' disconnected');
+        
+        userlist.delete(socket.name);
+        io.emit('disconnect', socket.name);
+
+        console.log(userlist.toJSON());
+        io.emit('currentUser', userlist.toJSON());
     });
-
-
 });
 
 server.listen(port, function() {

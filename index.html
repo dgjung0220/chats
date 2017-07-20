@@ -41,7 +41,6 @@
     
             var name = prompt("enter your name");
             var socket = io();
-
             var notification;
 
             socket.emit("login", {
@@ -49,9 +48,13 @@
             })
 
             socket.on("login", function(data) {
-                $('#messages').append($('<li><string>').text(data+ " has joined."));
-            })
-
+                $('#messages').append($('<li style="color: green"><string>').text(data+ " has joined."));
+            });
+            
+            socket.on("disconnect", function(data) {
+                $('#messages').append($('<li style="color: red"><string>').text(data+ " exit."));
+            });
+            
             $('form').submit(function(){
                 socket.emit('chat message', $('#m').val());
                 $('#m').val('');
@@ -76,6 +79,13 @@
 
                 $('#messageWindow').scrollTop($("#messageWindow")[0].scrollHeight);
             });
+
+            socket.on('currentUser', function(list){
+                $('#userlist').empty();
+                for(var i = 0; i < list.length; i++) {
+                    $('#userlist').append($('<li class="users">').text(list[i]));
+                }
+            });
         });
 
     </script>
@@ -83,6 +93,12 @@
     <body>
         <div id=messageWindow>
             <ul id="messages"></ul>
+        </div>
+
+        <div id=userlistWindow>
+            <ul id="userlist">
+                <li><strong>online<strong></li>
+            </ul>
         </div>
 
         <form action="">
