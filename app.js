@@ -16,13 +16,18 @@ app.use('/', route);
 
 var port = process.env.PORT || 3000;
 var userlist = new List();
+var spacelist = new List();
+
+var space = io.of('/chat').on('connection', function(socket) {
+
+});
 
 io.on('connection', function(socket){
     socket.on('login', function(user) {
         console.log('Client logged-in:\n name:' + user.name);
 
         socket.name = user.name;
-        userlist.add(user.name);
+        userlist.add(user.name+"/"+socket.id);
         io.emit('login', user.name);
         
         console.log(userlist.toJSON());
@@ -42,7 +47,7 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         console.log(socket.name + ' disconnected');
         
-        userlist.delete(socket.name);
+        userlist.delete(socket.name+"/"+socket.id);
         io.emit('disconnect', socket.name);
 
         console.log(userlist.toJSON());

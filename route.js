@@ -4,18 +4,19 @@ var router = express.Router();
 var client_id = 'gFcZMD8oSVXpwjzDiOuF';
 var client_secret = '5AnI3RgpSM';
 var state = "RANDOM_STATE";
-var redirectURI = encodeURI("http://young-crag-65037.herokuapp.com/callback");
+var redirectURI;
+
+if (process.env.PORT)
+    redirectURI = encodeURI("http://young-crag-65037.herokuapp.com/callback");
+else
+    redirectURI = encodeURI("http://127.0.0.1:3000/callback");
+
 var api_url = "";
 var request = require('request');
 
-router.get('/', function(req, res) {
-    //res.sendFile(__dirname + '/index.html');
-    //res.render('login');
-    
+router.get('/', function(req, res) {    
     api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirectURI + '&state=' + state;
-    
-    res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
-    res.end("<a href='"+ api_url + "'><img height='50' src='http://static.nid.naver.com/oauth/big_g.PNG'/></a>");
+    res.render('login', {api_url: api_url});
 });
 
 router.get('/callback', function (req, res) {
@@ -58,7 +59,6 @@ var naverProfile = (token, res) => {
     request.get(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(JSON.parse(body).response.name);
-            //res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
             res.render('chats', {name : JSON.parse(body).response.name});
         } else {
             console.log('error');
