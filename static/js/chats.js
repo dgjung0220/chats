@@ -6,7 +6,7 @@ window.addEventListener("load", function(){
         } else {}
     })
     
-    var name = prompt("enter your name");
+    var name = document.getElementById('name').value;
     var socket = io();
     var notification;
     
