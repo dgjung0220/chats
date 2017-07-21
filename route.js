@@ -43,6 +43,10 @@ router.get('/callback', function (req, res) {
     });
 });
 
+router.get('/login', function(req, res) {
+    res.render('login');
+});
+
 var naverProfile = (token, res) => {
     //Profile 
     var header = "Bearer " + token;
