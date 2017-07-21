@@ -26,8 +26,8 @@ io.on('connection', function(socket){
     socket.on('login', function(user) {
         console.log('Client logged-in:\n name:' + user.name);
 
-        socket.name = user.name;
-        userlist.add(user.name+"/"+socket.id);
+        socket.name = user.name; 
+        userlist.add(user.name);
         io.emit('login', user.name);
         
         console.log(userlist.toJSON());
@@ -47,7 +47,7 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         console.log(socket.name + ' disconnected');
         
-        userlist.delete(socket.name+"/"+socket.id);
+        userlist.delete(socket.name);
         io.emit('disconnect', socket.name);
 
         console.log(userlist.toJSON());
