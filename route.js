@@ -4,7 +4,7 @@ var router = express.Router();
 var client_id = 'gFcZMD8oSVXpwjzDiOuF';
 var client_secret = '5AnI3RgpSM';
 var state = "RANDOM_STATE";
-var redirectURI = encodeURI("http://127.0.0.1:3000/callback");
+var redirectURI = encodeURI("http://young-crag-65037.herokuapp.com/callback");
 var api_url = "";
 var request = require('request');
 
