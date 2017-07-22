@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "collections": "^5.0.6",
     "express": "4.15.3",
     "pug": "^2.0.0-rc.2",
