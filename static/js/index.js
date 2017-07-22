@@ -79,8 +79,8 @@ $(function() {
     var options = {
       body: msg.msg
     }
-    if (socketID === msg.id) {
-    //if (username === msg.name) {
+    //if (socketID === msg.id) {
+    if (username === msg.name) {
       $messages.append($('<li style="color:blue; text-align:right;">').text(msg.msg));
     } else {
       $messages.append($('<li>').text(msg.name +" : "+msg.msg));
