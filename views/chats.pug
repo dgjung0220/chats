@@ -1,9 +1,9 @@
 extends ./template.pug
 
 block chats
-  link(rel='stylesheet' type='text/css' href='css/chats.css')    
+  link(rel='stylesheet' type='text/css' href='../css/chats.css')    
   script(src='/socket.io/socket.io.js')
-  script(src='js/chats.js')
+  script(src='../js/chats.js')
   
   input(type='hidden' id='name' value=name)
   #messageWindow

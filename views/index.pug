@@ -1,0 +1,29 @@
+extends ./template.pug
+
+block index
+  link(rel='stylesheet' type='text/css' href='css/indexStyle.css')    
+  script(src='/socket.io/socket.io.js')
+  script(src='js/index.js')
+
+  ul.pages
+    li.chat.page
+      header
+        div
+          h2 방번호
+        div
+          h4(id="onlineUserNum") 
+        div
+          h4 설정
+
+      .chatArea
+        ul.status
+          li test
+        ul.messages
+
+      input.inputMessage
+      
+
+    li.login.page
+      .form
+        h3.title Login by Nickname
+        input.usernameInput(type='text', maxlength='14')

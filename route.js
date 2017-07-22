@@ -14,9 +14,20 @@ else
 var api_url = "";
 var request = require('request');
 
+router.get('/', function(req, res) {
+    res.render('index');
+});
+
+router.get('/chats/:name', function(req, res) {
+    console.log(req.params.name);
+    res.render('chats', {name:req.params});
+})
+
+/*
 router.get('/', function(req, res) {    
-    api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirectURI + '&state=' + state;
-    res.render('login', {api_url: api_url});
+    res.render('index');
+    //api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirectURI + '&state=' + state;
+    //res.render('login', {api_url: api_url});
 });
 
 router.get('/callback', function (req, res) {
@@ -45,7 +56,8 @@ router.get('/callback', function (req, res) {
 });
 
 router.get('/login', function(req, res) {
-   res.sendFile(__dirname + '/index.html');
+   //res.sendFile(__dirname + '/index.html');
+   res.render('chats');
 });
 
 var naverProfile = (token, res) => {
@@ -68,5 +80,6 @@ var naverProfile = (token, res) => {
         }
     })
 }
+*/
 
 module.exports = router;
