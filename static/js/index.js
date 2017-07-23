@@ -87,6 +87,10 @@ $(function() {
     $currentInput = $inputMessage.focus();
 
     socketID = data.id;
+    
+    $('#roomNumber').empty();
+    $('#roomNumber').append($('<h2>').text(data.room));
+    
     $messages.append($('<li style="color: green"><string>').text(data.name+ " has joined."));
     $messages[0].scrollTop = $messages[0].scrollHeight;
   });

@@ -32,7 +32,7 @@ io.on('connection', function(socket) {
 
 
         userlist.add(user.name);
-        io.in(socket.room).emit('login', {id : socket.id , name : user.name});
+        io.in(socket.room).emit('login', {id : socket.id , name : user.name, room : user.room});
         
         console.log(userlist.toJSON());
         io.in(socket.room).emit('currentUser', {onlineUserNum: userlist.length, userlist : userlist.toJSON()});
