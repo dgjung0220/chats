@@ -108,6 +108,46 @@ header div h2{
   display: none;
 }
 
+/* room number page */
+.room.page {
+  display : none;
+  background-color : coral;
+}
+
+.room.page .form {
+  height: 100px;
+  margin-top: -100px;
+  position: absolute;
+
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
+
+.room.page .form .roomNumberInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 400px;
+}
+
+.room.page .title {
+  font-size: 200%;
+}
+
+.room.page .roomNumberInput {
+  font-size: 200%;
+  letter-spacing: 3px;
+}
+
+.room.page .title, .room.page .roomNumberInput {
+  color: #fff;
+  font-weight: 100;
+}
+
 /* Font */
 
 .messages {

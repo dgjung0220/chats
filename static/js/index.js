@@ -2,19 +2,21 @@ $(function() {
 
   var $window = $(window);
   var $usernameInput = $('.usernameInput');
+  var $roomNumberInput = $('.roomNumberInput');
   var $inputMessage = $('.inputMessage');
   var $status = $('.status');
   var $messages = $('.messages');
-  var $inputMessage = $('.inputMessage');
-
+  
   var $onlineUserNum = $('#onlineUserNum');
 
   var $loginPage = $('.login.page');
   var $chatPage = $('.chat.page');
+  var $roomPage = $('.room.page');
 
   var socket = io();
 
   var username;
+  var roomNumber;
   var socketID;
   //var typing = false;
   //var lastTypingTime;
@@ -32,14 +34,21 @@ $(function() {
     username = cleanInput($usernameInput.val().trim());
     if(username) {
       $loginPage.fadeOut();
-      $chatPage.show();
+      $roomPage.show();
       $loginPage.off('click');
-      $currentInput = $inputMessage.focus();
-
-      socket.emit("login", {name: username});
+      $currentInput = $roomNumberInput.focus();
     }
   }
-
+  
+  var setRoomNumber = () => {
+    roomNumber = cleanInput($roomNumberInput.val().trim());
+    if(roomNumber) {
+    } else {
+      roomNumber = '0d0e0f0a0u0l0t';
+    }
+    socket.emit("login", {name: username, room: roomNumber});
+  }
+  
   var sendMessage = () => {
     var message = cleanInput($inputMessage.val());
 
@@ -56,8 +65,10 @@ $(function() {
     }
 
     if (event.which === 13) {
-      if (username) {
+      if (username && roomNumber) {
         sendMessage();
+      } else if (username){
+        setRoomNumber();
       } else {
         setUsername();
       }
@@ -70,6 +81,11 @@ $(function() {
 
   /* receiving socket event */
   socket.on("login", function(data) {
+    $roomPage.fadeOut();
+    $chatPage.show();
+    $roomPage.off('click');
+    $currentInput = $inputMessage.focus();
+
     socketID = data.id;
     $messages.append($('<li style="color: green"><string>').text(data.name+ " has joined."));
     $messages[0].scrollTop = $messages[0].scrollHeight;
