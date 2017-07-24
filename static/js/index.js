@@ -97,7 +97,7 @@ $(function() {
 
   socket.on('chat message', function(msg){
     var options = {
-      body: msg.msg
+      //body: msg.msg
     }
     //if (socketID === msg.id) {
     if (username === msg.name) {
