@@ -8,6 +8,13 @@ _**Realtime Chatting program using nodejs & socket.io [Blog][bearpot]**_
 
 * [Node.js][nodejs] >= 0.10
 
+## node modules
+
+* collections
+* express 
+* pug
+* socket.io
+
 ## Getting started
 
 ```bash
