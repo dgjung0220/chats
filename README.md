@@ -2,7 +2,7 @@
 
 _**Realtime Chatting program using nodejs & socket.io [Blog][bearpot]**_
 
-**chats** is a realtime chatting program using [Node.js][nodejs] and socket.io[socket.io]. It is based on socket.io chat demo.
+**chats** is a realtime chatting program using [Node.js][nodejs] and [socket.io][socket.io]. It is based on socket.io chat demo.
 
 ## Requirements
 
