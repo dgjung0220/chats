@@ -25,8 +25,8 @@ node app
 You can use this chat program in this website : http://young-crag-65037.herokuapp.com/
 
 ## License
-
-Copyright © 2017, bearpot, Donggoo Jung
+ISC License
+Copyright © 2017, [bearpot][bearpot], Donggoo Jung
 
 [nodejs]: <http://nodejs.org/>
 [socket.io]: <http://socket.io>
